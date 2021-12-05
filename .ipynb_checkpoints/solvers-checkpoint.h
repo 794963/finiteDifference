@@ -56,7 +56,8 @@ void Jacobi(VDD &A , VD &temp , VD b , int nTemp )
 	    // Record new value in solution
 
 	    tempNew[r] = newval;
-
+        
+     if ( fabs(newval) < 1.e-10)converged = 1;
 	  }
 
 	rLOOP temp[r] = tempNew[r];
@@ -140,7 +141,7 @@ void GaussSeidel(VDD &A , VD &temp , VD b , int nTemp )
 	    // Record new value in solution
 
 	    tempNew[r] = newval;
-
+        if ( fabs(newval) < 1.e-10)converged = 1;
 	  }
 
 	rLOOP temp[r] = tempNew[r];
@@ -197,7 +198,7 @@ void MatVecProd(VDD &A , VD &p , VD &prod , int nTemp )
   rowLOOP
     {
       prod[row] = 0.;
-      colLOOP  prod[row] += (A[row][col] * p[row]);
+      colLOOP  prod[row] += (A[row][col] * p[col]);
     }
 }
 
